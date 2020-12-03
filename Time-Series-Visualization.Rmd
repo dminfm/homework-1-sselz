@@ -27,6 +27,8 @@ Use the help menu to explore what the series `gold`, `woolyrnq` and `gas` repres
 
 ```{r, echo=TRUE, cache=TRUE, eval=FALSE}
 help(gold)
+help(woolyrnq)
+help(gas)
 # to do
 
 ```
@@ -35,7 +37,9 @@ Use `autoplot` to plot each of these in separate plots.
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(gold)
+autoplot(woolyrnq)
+autoplot(gas)
 ```
 
 **What is the frequency of each commodity series?**
@@ -43,7 +47,9 @@ Hint: apply the `frequency()` function.
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+frequency(gold)
+frequency(woolyrnq)
+frequency(gas)
 ```
 
 Use `which.max()` to spot the outlier in the `gold` series. 
@@ -51,7 +57,7 @@ Use `which.max()` to spot the outlier in the `gold` series.
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+which.max(gold)
 ```
 
 # Exercise 2 
@@ -75,14 +81,14 @@ Construct time series plots of each of the three series and use 'facets = TRUE' 
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(mytimeseries,facets=TRUE)
 ```
 
 Check what happens when you don't include `facets=TRUE`.
 
 ```{r, echo=TRUE, cache=TRUE, dependson="exmyts"}
 # to do
-
+autoplot(mytimeseries)
 ```
 
 # Exercise 3
@@ -100,19 +106,24 @@ The second argument (`skip=1`) is required because the Excel sheet has two heade
 Select one of the time series as follows (but replace the column name with your own chosen column):
 
 ```{r, echo=TRUE, cache=TRUE}
-myts <- ts(retaildata[, "A3349873A"], frequency = 12, start = c(1982, 4))
+myts <- ts(retaildata[, "A3349873A"], frequency =12, start = c(1990, 1))
+myts
 ```
 
 Explore your chosen retail time series using the following functions: `autoplot`, `ggseasonplot`, `ggsubseriesplot`, `gglagplot`, `ggAcf`
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(myts)
+ggsubseriesplot(myts)
+ggseasonplot(myts)
+gglagplot(myts)
+ggAcf(myts)
 ```
 
 **Can you spot any seasonality, cyclicity and trend? What do you learn about the series?**
 
-Your answer:
+Your answer: Der Anstieg beginnt im seit neustem im Juli und kehrt im Oktober zur normalität zurück.Dies ist im Seasonplot zu erkennen. Generell ist ein wachstum über die Jahre festzustellen. Der Wachstumstrend erkennt man im Autoplot, hierzu kann die Trendlinie angezeigt werden. Die cyclicity kann auch anhand der Seasondaten und des Subseriesplot erkannt werden. Nach mitte des Jahres ist ein Anstieg zu verzeichnen, der nach 3 Monaten abflacht auf den ungefähr alten Wert.
 
 
 # Exercise 4
@@ -123,6 +134,15 @@ Create time plots of the following time series: goog, writing, fancy, a10, h02.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 # to do
+help(goog)
+help(writing)
+help(fancy)
+help(a10)
+help(h02)
+autoplot(a10) + ylab("$ million") + xlab("Year") +
+ggtitle("Antidiabetic drug sales")
+autoplot(goog) + ylab("stock prices") + xlab("trading days") +
+ggtitle("Daily closing stock prices")
 
 ```
 
@@ -135,37 +155,41 @@ Use the `ggseasonplot` and `ggsubseriesplot` functions to explore the seasonal p
 ```{r, echo=TRUE}
 # writing
 # to do
-
+ggseasonplot(writing)
+ggsubseriesplot(writing)
 ```
 
-Your answer:
+Your answer:Im Sommer erreichen die Werte jedes Jahr ihr Tiefpunkt. Generell ist ein Anstieg in den letzten Jahren zu erkennen.
 
 
 ```{r, echo=TRUE}
 # fancy
 # to do
-
+ggseasonplot(fancy)
+ggsubseriesplot(fancy)
 ```
 
-Your answer:#
+Your answer:Anfang des Jahres sind Werte auf dem Tiefpunkt, während diese am Ende des Jahres ihr Maximum erreichen.Jedes Jahr starten die Werte etwas weiter oben.
 
 
 ```{r, echo=TRUE}
 # a10
 # to do
-
+ggseasonplot(a10)
+ggsubseriesplot(a10)
 ```
 
-Your answer:
+Your answer:Die TS endet im Juni 2008. Es ist ein Wachstum der einzelnen Jahre zu erkennen. Ab 2004 wird eine Seasonalität deutlich, der maximale Wert ist am Anfang des Jahres erreicht. Der Tiefpunkt im Feburar und wächst bis zum Ende des Jahres wieder an. I den letzten Jahren gibt es starke Schwankungen.
 
 
 ```{r, echo=TRUE}
 # h02
 # to do
-
+ggseasonplot(h02)
+ggsubseriesplot(h02)
 ```
 
-Your answer:
+Your answer:Maximal Werte sind im Januar und Dezember erreicht und der Tiefpunkt im Februar. Von Februar an ist ein Wachstum bis in den Dezember zu erkennen. Die TS beginnt im Juli 1991 und ender im Juni 2008. Die letzten Jaren haben starke Schwankungen.
 
 
 # Exercise 5
@@ -191,35 +215,59 @@ ggAcf(hsales)
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(usdeaths)
+ggseasonplot(usdeaths)
+ggsubseriesplot(usdeaths)
+gglagplot(usdeaths)
+ggAcf(usdeaths)
 ```
 
 Your answer:
+  + Seasonality ist in allen Plots zu erkennen
+  + Cyclicity wird in den ersten Beiden festgestellt
+  + kein Trend
 
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(bricksq)
+ggseasonplot(bricksq)
+ggsubseriesplot(bricksq)
+gglagplot(bricksq)
+ggAcf(bricksq)
 ```
 
 Your answer:
-
+  + Seasonality besonders im dritten Block sieht man, das Q1 am schwächsten ist.
+  + Cyclicity wird in der ersten Grafik deutlicher Sichtbar
+  + Trend erkennbar in Plot1, steigend bis 1975 dann eher Konstant.
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(sunspotarea)
+#ggseasonplot(sunspotarea)
+#ggsubseriesplot(sunspotarea)
+gglagplot(sunspotarea)
+ggAcf(sunspotarea)
 ```
 
 Your answer:
-
-
+  + nicht Seasonal
+  + Cyclicity über mehrere Jahre zu erkennen
+  + kein Trend
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(gasoline)
+ggseasonplot(gasoline)
+#ggsubseriesplot(gasoline)
+gglagplot(gasoline)
+ggAcf(gasoline)
 ```
 
 Your answer:
-
+  + Seasonality in den Wintermonaten zu erkennen(Tiefpunkte)
+  + keine konstante Cyclic zu erkennen
+  + Trend erkennbar in Plot1, steigend bis 2007
 
 # Exercise 6
 
@@ -239,10 +287,18 @@ ggAcf(y)
 
 ```{r, echo=TRUE, cache=TRUE}
 # todo
+rawdat<-ts(pigs,frequency=12,start=c(1990,1))
+mypigs <- window(pigs, start=1990)
+autoplot(rawdat)
+ggAcf(rawdat)
+autoplot(mypigs) +
+xlab("Year") + ylab("thousands") +
+ggtitle("Number of pigs slaughtered in Victoria")
 
+ggAcf(mypigs)
 ```
 
-Your answer:
+Your answer: Es scheint keine starkes Rauschen in den Daten zu geben. Es konnten keine Muster zwischen den Whitenoise und PigSlautherd festgestellte werden. Die ACF ist unter 0.23.
 
 
 # Exercise 7
@@ -251,8 +307,10 @@ Your answer:
 
 ```{r}
 # todo
-
+ddj <- diff(dj)
+autoplot(ddj)
+ggAcf(ddj)
 ```
 
-Your answer:
+Your answer: Auch hier ist nur schwer etwas zu interpretieren, die Daten sehen nach Whitenoise aus. Die Grenze wird nur einmal überschritten. Der ACF ist bei maximal 0.12.
 
