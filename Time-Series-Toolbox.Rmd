@@ -155,7 +155,7 @@ Are the following statements true or false? Explain your answer.
 
 > a. Good forecast methods should have normally distributed residuals.
 
-Your answer: Ja, es ist der Unterschied zwischen beobachteten Werten und passenden Werten.
+Your answer: Ja, es ist der Unterschied zwischen beobachteten Werten und passenden Werten..
 
 > b. A model with small residuals will give good forecasts.
 
